@@ -1,0 +1,16 @@
+<div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Account Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= current_user.name%></td>
+          <td><%= current_user.account.account_name%></td>
+        </tr>
+      </tbody>
+</div>
+<%= link_to "logout",  destroy_user_session_path, method: :delete%>

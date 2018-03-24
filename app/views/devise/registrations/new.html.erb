@@ -9,8 +9,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :account_name %><br />
-    <%= f.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
+    <%= f.fields_for :account do |m|%>
+    <%= m.label :account_name %><br />
+    <%= m.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
+    <%end%>
   </div>
 
   <div class="field">
