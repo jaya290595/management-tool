@@ -4,6 +4,8 @@ class InvitationsController < ApplicationController
 
   def create
     @invitation = Invitation.new(invitation_params)
+    @invitation.account_id = (Account.where(user_id: current_user.id).first).id
+
     if @invitation.save
       InvitationMailer.invitation_email(@invitation).deliver_now
       redirect_to accounts_path
