@@ -1,3 +1,6 @@
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -11,5 +14,9 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery3
+//= require popper
+//= require bootstrap
 //= require turbolinks
 //= require_tree .
+

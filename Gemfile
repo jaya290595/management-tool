@@ -17,6 +17,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 gem 'devise', '~> 4.2'
+gem 'bootstrap', '~> 4.0'
+gem 'jquery-rails'
+gem 'figaro', '~> 1.1', '>= 1.1.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
