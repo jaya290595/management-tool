@@ -5,11 +5,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
 
   
-  def new
-    build_resource ({})
-    resource.build_account
-    respond_with self.resource
-  end
+  # def new
+  #   build_resource ({})
+  #   resource.build_account
+  #   respond_with self.resource
+  # end
   # POST /resource
   # def create
   #   super
@@ -42,7 +42,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email,:password,:password_confirmation, :account_attributes => :account_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email,:password,:password_confirmation, :account_name])
   end
 
   # If you have extra params to permit, append them to the sanitizer.

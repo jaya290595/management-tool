@@ -10,10 +10,8 @@
   </div>
   <%if !params[:email].present?%>
     <div class="field">
-      <%= f.fields_for :account do |m|%>
-      <%= m.label :account_name %><br />
-      <%= m.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
-      <%end%>
+      <%= f.label :account_name %><br />
+      <%= f.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
     </div>
 
   <%else%>
