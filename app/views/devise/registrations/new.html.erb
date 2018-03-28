@@ -3,21 +3,28 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+
   <div class="field">
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
   </div>
+  <%if !params[:email].present?%>
+    <div class="field">
+      <%= f.fields_for :account do |m|%>
+      <%= m.label :account_name %><br />
+      <%= m.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
+      <%end%>
+    </div>
 
-  <div class="field">
-    <%= f.fields_for :account do |m|%>
-    <%= m.label :account_name %><br />
-    <%= m.text_field :account_name, autofocus: true, autocomplete: "account_name" %>
-    <%end%>
-  </div>
+  <%else%>
+
+  <%= hidden_field_tag :account_id, value: params[:account_id] %>
+  <%= hidden_field_tag :email, value: params[:email]  %>
+  <%end%>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, value: params[:email], autofocus: true, autocomplete: "email" %>
   </div>
 
   <div class="field">
