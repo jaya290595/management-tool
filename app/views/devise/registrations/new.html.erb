@@ -16,8 +16,8 @@
 
   <%else%>
 
-  <%= hidden_field_tag :account_id, value: params[:account_id] %>
-  <%= hidden_field_tag :email, value: params[:email]  %>
+  <%= f.hidden_field :account_id1, value: params[:account_id] %>
+  <%= f.hidden_field :email1, value: params[:email]%>
   <%end%>
 
   <div class="field">
