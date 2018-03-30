@@ -7,12 +7,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td><%=%></td>
-          
-          <td> <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Invite new users </button></td>
-        </tr>
+          <% @accounts.each do |account| %>
+          <tr>
+              <td><%= link_to account.account_name, account_path(@account)%> </td>
+          </tr>
+          <%end%>
+
       </tbody>
+        
     </table>
 
 <%= link_to "logout",  destroy_user_session_path, method: :delete%>
@@ -23,34 +25,3 @@
 
 
 
-
-<!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-    
-      <!-- Modal content-->
-        <div class="modal-content">
-          <div class="">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"></h4>
-          </div>
-            <div class="modal-body">
-                <%= form_with scope: :invitation, url: invitations_path, local: true do |form| %>
-                  <p>
-                    <%= form.label :Email %><br>
-                    <%= form.email_field :email %>
-                  </p>
-
-                  <p>
-                    <%= form.submit %>
-                  </p>
-                <% end %>
-            </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"> close</button>
-              </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
