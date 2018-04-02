@@ -10,10 +10,11 @@
       </thead>
       <tbody>
           <tr>
-              <td><%= @user.name%> </td>
-              <td><%= @user.email%>
-
+            <%@user_detail.each do |a|%>
+              <td><%= a.name%> </td>
+              <td><%= a.email%>
           </tr>
+          <%end%>
       </tbody>
         
     </table>

@@ -11,8 +11,10 @@ class User < ApplicationRecord
 
   def account
     if (account_id1 && email1).present?
+      
     Invitation.where(account_id: account_id1, email: email1).update(user_id: self.id)
     else
+      
     @account = Account.create(user_id: self.id, account_name: account_name)
     end
   end

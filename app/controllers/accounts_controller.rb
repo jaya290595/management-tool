@@ -9,9 +9,11 @@ class AccountsController < ApplicationController
   end
 
   def show
-  	@account = Account.find(params[:id])
-  	@account1 = Invitation.find_by(account_id: params[:id])
-  	@user = User.find_by(id: @account1.user_id)
+  	@account = Invitation.where(account_id: params[:id])
+    @user_detail = []
+    @account.each do |user|
+     @user_detail << User.find_by_id(user.user_id)
+    end
  end
 
 private
