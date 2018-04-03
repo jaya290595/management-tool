@@ -1,24 +1,19 @@
 <div class="container">
-
-    <table class="table">
-      <thead>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Account Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @account.each do |account| %>
         <tr>
-          <th>Account Name</th>
+          <td> <%=link_to account.account_name, account_path(account.id)%> </td>
         </tr>
-      </thead>
-      <tbody>
-          <% @accounts.each do |account| %>
-          <tr>
-            
-              <td><%= link_to account.account_name, account_path(@account.id)%> </td>
-          </tr>
-          <%end%>
-
-      </tbody>
-        
-    </table>
-
-<%= link_to "logout",  destroy_user_session_path, method: :delete%>
+      <%end%>
+    </tbody>
+  </table>
+  <%= link_to "logout",  destroy_user_session_path, method: :delete%>
 </div>
 
 

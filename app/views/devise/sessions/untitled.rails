@@ -24,11 +24,11 @@
               <div class="float-left">
                 <input class="btn btn-primary" <%= f.submit "Login"%>
               </div>
-              <%= render "devise/shared/links" %>
-
         </form>
         <%end%>
     </div>
   </div>
 </div>
+<%= render "devise/shared/links" %>
+
 

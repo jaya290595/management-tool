@@ -5,6 +5,7 @@ class CreateInvitations < ActiveRecord::Migration[5.1]
       t.integer :user_id
 
       t.timestamps
+      add_index(:invitations, [:account_id, :user_id], unique: true)
     end
   end
 end

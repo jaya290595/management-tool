@@ -7,15 +7,14 @@ class User < ApplicationRecord
   #has_many :invitations, dependent: :destroy
   #has_one :account
   #accepts_nested_attributes_for :account
-    after_create :account
+    after_create :account 
 
   def account
     if (account_id1 && email1).present?
-      
     Invitation.where(account_id: account_id1, email: email1).update(user_id: self.id)
     else
-      
     @account = Account.create(user_id: self.id, account_name: account_name)
     end
   end
+
 end
