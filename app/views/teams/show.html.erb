@@ -1,0 +1,73 @@
+<div class="container">
+  <table class="table">
+      <div class="text-right">
+          <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#members">Add members </button>
+      </div>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @all_users.each do |user|%> 
+        <tr>
+          <td><%= user.name%></td>
+          <td><%=user.email%></td>
+        </tr>
+        <%end%>
+     
+      </tbody>
+  </table>
+
+
+
+
+
+
+
+
+  <!-- Modal for team members -->
+  <div class="modal fade" id="members" role="dialog">
+    <div class="modal-dialog">
+                  
+        <!-- Modal content-->
+      <div class="modal-content">
+        <div class="">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <%= form_with scope: :team, url: check_path, local: true do |form|%>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <div class="checkbox">
+                      <label class= "checkbox inline">
+                        <%@invitation_details.each do |a|%>
+                          <tr>
+                            <td><%= a.name%></td>
+                            <td><%= check_box_tag "ids[]",a.id %></td>
+                            <%= form.hidden_field :team_id , :value => @team.id %>
+                            <%= form.hidden_field :account_id , :value => @account.id %>
+                        <% end%>
+                      </label>
+                  </div>
+              </tbody>
+            </table>
+            <%= form.submit%>
+          <%end%>
+        </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal"> close</button>
+        </div>
+    </div>
+  </div>
+</div>
+        

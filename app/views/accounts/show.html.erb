@@ -2,10 +2,7 @@
   <table class="table">
     <div class="text-right">
       <button type="button" class="btn btn-danger" class="col-md-6 text-right" data-toggle="modal" data-target="#myModal">Invite new users </button>
-    </div>
-
-    <div class="text-center">
-      <button type="button" class="btn btn-primary" class="col-md-6 text-right"> Add team members</button>
+      <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#Teams">Add Teams </button></div>
     </div>
     <thead>
       <tr>
@@ -17,38 +14,96 @@
       <%@user_detail.each do |a|%>
         <tr>
           <td><%= a.name%> </td>
-          <td><%= a.email%>
+          <td><%= a.email%></td>
         </tr>
       <%end%>
     </tbody>
   </table>
 
-
-    <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-          <div class="modal-dialog">
-        
-          <!-- Modal content-->
-            <div class="modal-content">
-              <div class="">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"></h4>
-              </div>
-                <div class="modal-body">
-                    <%= form_with scope: :invitation, url: invitations_path, local: true do |form| %>
-                      <p>
-                        <%= form.label :Email %><br>
-                        <%= form.email_field :email %>
-                      </p>
-
-                      <p>
-                        <%= form.submit %>
-                      </p>
-                    <% end %>
-                </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"> close</button>
-                  </div>
-            </div>
-          </div>
+  
+    <%@team.each do |team|%>
+    <div class = "container">
+      <div class="row">
+        <div class="col">
+        <h2><%=team.team_name%></h2>
+          <p class="title"></p>
+          <%= link_to 'Show Teams',team_path(team),class: "btn btn-primary"%>
         </div>
+        </div>
+
+    <%end%>
+      
+  </div>      
+      
+
+
+
+
+
+
+
+<!-- Modal for invitations -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        
+    <!-- Modal content-->
+      <div class="modal-content">
+         <div class="">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"></h4>
+          </div>
+          <div class="modal-body">
+            <%= form_with scope: :invitation, url: invitations_path, local: true do |form| %>
+              <p>
+                <%= form.label :Email %><br>
+                <%= form.email_field :email %>
+              </p>
+
+              <p>
+              <%= form.submit %>
+              </p>
+            <% end %>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"> close</button>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+<!-- Modal for Teams -->
+<div class="modal fade" id="Teams" role="dialog">
+  <div class="modal-dialog">
+          
+<!-- Modal content-->
+
+    <div class="modal-content">
+      <div class="">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+        <%= form_with scope: :team, url: teams_path(@team), local: true do |form| %>
+          <p>
+            <%= form.label :Team_name %><br>
+            <%= form.text_field :team_name %>
+            
+          </p>
+          <p>
+            <%= form.submit %>
+          </p>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal"> close</button>
+      </div>
+    </div>
+  </div>
+</div>
+    
