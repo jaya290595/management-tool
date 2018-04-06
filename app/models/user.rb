@@ -8,6 +8,10 @@ class User < ApplicationRecord
   #has_one :account
   #accepts_nested_attributes_for :account
     after_create :account 
+    
+  def self.team_id user_id
+    User.find_by_id(user_id)
+  end
 
   def account
     if (account_id1 && email1).present?

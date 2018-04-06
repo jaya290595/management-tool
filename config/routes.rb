@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "checkuser", to:"invitations#checkuser"
   resources :teams
   post "check", to:"teams#check"
+  get "check_member", to: "teams#check_member"
  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

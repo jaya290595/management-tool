@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @all_users.each do |user|%> 
+        <% @invitation_details.each do |user|%> 
         <tr>
           <td><%= user.name%></td>
           <td><%=user.email%></td>
@@ -48,13 +48,14 @@
               <tbody>
                   <div class="checkbox">
                       <label class= "checkbox inline">
-                        <%@invitation_details.each do |a|%>
-                          <tr>
+
+                        <%@user_details.each do |a|%>
+                            <tr>
                             <td><%= a.name%></td>
                             <td><%= check_box_tag "ids[]",a.id %></td>
+                            <%end%>
                             <%= form.hidden_field :team_id , :value => @team.id %>
                             <%= form.hidden_field :account_id , :value => @account.id %>
-                        <% end%>
                       </label>
                   </div>
               </tbody>
