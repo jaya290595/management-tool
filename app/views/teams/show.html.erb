@@ -1,7 +1,11 @@
 <div class="container">
   <table class="table">
       <div class="text-right">
-          <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#members">Add members </button>
+          <%= link_to "Add members", add_member_path, :id => "members", "data-toggle" => "modal",'data-target' => '#members'%>
+
+
+
+
       </div>
       <thead>
         <tr>
@@ -10,14 +14,14 @@
         </tr>
       </thead>
       <tbody>
-        <% @invitation_details.each do |user|%> 
+        <% @member.each do |user|%> 
         <tr>
           <td><%= user.name%></td>
           <td><%=user.email%></td>
         </tr>
-        <%end%>
      
       </tbody>
+      <%end%>
   </table>
 
 

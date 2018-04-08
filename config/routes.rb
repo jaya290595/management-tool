@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :teams
   post "check", to:"teams#check"
   get "check_member", to: "teams#check_member"
+  post "add_member", to:"teams#add_member"
+
  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
