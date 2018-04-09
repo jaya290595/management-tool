@@ -1,0 +1,11 @@
+<div class = "container">
+  <div class="row">
+    <div class="col">
+        <h2><%=object.team_name%></h2>
+          <p class="title"></p>
+          <%= link_to 'Show Teams',team_path(object),class: "btn btn-primary"%>
+      <%else%>
+          <h3> There is no team</h3>
+    </div>
+  </div>
+</div> 

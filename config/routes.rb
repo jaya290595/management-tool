@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :teams
   post "check", to:"teams#check"
   get "check_member", to: "teams#check_member"
-  post "add_member", to:"teams#add_member"
+  get "add_member", to:"teams#add_member"
 
  
 

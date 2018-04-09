@@ -5,7 +5,6 @@ class TeamMember < ApplicationRecord
     @member_details = []
     @team_member.each do |member|
       @member_details << User.find_by_id(member.user_id)
-      debugger
    end
 
   end 

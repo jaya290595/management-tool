@@ -4,6 +4,7 @@
       <button type="button" class="btn btn-danger" class="col-md-6 text-right" data-toggle="modal" data-target="#myModal">Invite new users </button>
       <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#Teams">Add Teams </button></div>
     </div>
+
     <thead>
       <tr>
         <th>Name</th>
@@ -20,28 +21,18 @@
     </tbody>
   </table>
 
-  
-    <%@team.each do |team|%>
-    <div class = "container">
-      <div class="row">
-        <div class="col">
-        <h2><%=team.team_name%></h2>
-          <p class="title"></p>
-          <%= link_to 'Show Teams',team_path(team),class: "btn btn-primary"%>
-        </div>
-        </div>
-
+<% @team.each do |team|%>
+  <%if team.owner_id == current_user.id %>
+    <h3> My Teams </h3>
+    <%= render 'team',:object => @team %>
+           
+  <%else%>
+    <h3>Other Team </h3>
+    <%= render 'team'%>
     <%end%>
-      
-  </div>      
-      
+<%end%>
 
-
-
-
-
-
-
+  
 <!-- Modal for invitations -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -93,7 +84,8 @@
           <p>
             <%= form.label :Team_name %><br>
             <%= form.text_field :team_name %>
-            
+            <%= form.hidden_field :owner_id , :value => @current_user.id %>
+
           </p>
           <p>
             <%= form.submit %>

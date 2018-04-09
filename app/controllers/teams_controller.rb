@@ -10,27 +10,24 @@ class TeamsController < ApplicationController
   end  
 
   def show
-      
-    @member_details = TeamMember.where(team_id: params[:id])
-    @member=[]
-    @member_details.each do |user|
-      @member << User.team_id(user.user_id)
-      debugger
-    end    
+  # to add members in team
+    @team = Team.find(params[:id])
+    @account = Account.find_by(user_id: current_user.id)
+    @invitation = Invitation.where(account_id: @account.id)
+    @member_details = TeamMember.check_member(params[:id])
+    @user_details = []
+    @invitation.each do |invite|
+      @user_details << User.team_id(invite.user_id)
+    end  
+  #  added members in Team
+    @team_member = TeamMember.where(team_id: params[:id])
+    @checked_user = []
+    @team_member.each do |user|
+      @checked_user << User.team_id(user.user_id)
+    end
+    @user_for_modal = @user_details - @checked_user
   end
 
-  def add_member
-      @account = Account.find_by(user_id: current_user.id)
-      @invitation = Invitation.where(account_id: @account.id)
-      @member_details = TeamMember.check_member(params[:id])
-      @checked_user = @invitation - @member_details
-      @user_details = []
-      @checked_user.each do |invite|
-        @user_details << User.team_id(invite.user_id)
-        debugger
-      end
-    
-  end
 
 
   def check
@@ -44,7 +41,7 @@ class TeamsController < ApplicationController
 
 private
   def teams_params
-    params.require(:team).permit(:team_name)
+    params.require(:team).permit(:team_name, :owner_id)
   end
 
 end

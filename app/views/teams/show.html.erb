@@ -1,11 +1,7 @@
 <div class="container">
   <table class="table">
       <div class="text-right">
-          <%= link_to "Add members", add_member_path, :id => "members", "data-toggle" => "modal",'data-target' => '#members'%>
-
-
-
-
+         <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#members">Add Members </button></div>
       </div>
       <thead>
         <tr>
@@ -14,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @member.each do |user|%> 
+        <% @checked_user.each do |user|%> 
         <tr>
           <td><%= user.name%></td>
           <td><%=user.email%></td>
@@ -53,7 +49,7 @@
                   <div class="checkbox">
                       <label class= "checkbox inline">
 
-                        <%@user_details.each do |a|%>
+                        <%@user_for_modal.each do |a|%>
                             <tr>
                             <td><%= a.name%></td>
                             <td><%= check_box_tag "ids[]",a.id %></td>
