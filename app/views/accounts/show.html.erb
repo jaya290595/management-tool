@@ -1,7 +1,9 @@
 <div class="container">
   <table class="table">
     <div class="text-right">
-      <button type="button" class="btn btn-danger" class="col-md-6 text-right" data-toggle="modal" data-target="#myModal">Invite new users </button>
+      <%if invite_button(@accounts).present? %>
+          <button type="button" class="btn btn-danger" class="col-md-6 text-right" data-toggle="modal" data-target="#myModal">Invite new users </button>
+          <%end%>
       <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#Teams">Add Teams </button></div>
     </div>
 
@@ -21,16 +23,14 @@
     </tbody>
   </table>
 
-<% @team.each do |team|%>
-  <%if team.owner_id == current_user.id %>
-    <h3> My Teams </h3>
-    <%= render 'team',:object => @team %>
-           
-  <%else%>
-    <h3>Other Team </h3>
-    <%= render 'team'%>
+  <h3> My teams </h3> 
+    <% @team.each do |team|%>
+      <%= render 'team', team: team %>
     <%end%>
-<%end%>
+  <h3> Other teams</h3>
+    <% @other_teams.each do |team|%>
+      <%= render 'team', team: team %>
+    <%end%>
 
   
 <!-- Modal for invitations -->
@@ -85,11 +85,12 @@
             <%= form.label :Team_name %><br>
             <%= form.text_field :team_name %>
             <%= form.hidden_field :owner_id , :value => @current_user.id %>
-
+              <%= form.hidden_field :account_id , :value => params[:id] %>
           </p>
           <p>
             <%= form.submit %>
           </p>
+
         <% end %>
       </div>
       <div class="modal-footer">

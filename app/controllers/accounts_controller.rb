@@ -13,13 +13,18 @@ class AccountsController < ApplicationController
 
   def show
     	@account = Invitation.where(account_id: params[:id])
-      @current_user = User.find(current_user.id)      
       @user_detail = []
       @account.each do |user|
         @user_detail << User.find_by_id(user.user_id)
       end
-      debugger
-      @team = Team.where(account_id: params[:id], owner_id: @current_user.id)
+
+      @team = Team.where(account_id: params[:id], owner_id: current_user.id)
+      @team_member = TeamMember.where(user_id: current_user.id)
+      @other_teams = []
+      @team_member.each do |member|
+        @other_teams << Team.find_by(id: member.team_id)
+      end
+    
   end
 
 private
