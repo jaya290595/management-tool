@@ -6,8 +6,9 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(invitation_params)    
     @invitation.account_id = (Account.where(user_id: current_user.id).first).id
+    @invitation.token =  Digest::SHA1.hexdigest([Time.now, rand].join)
     if @invitation.save
-      InvitationMailer.invitation_email(@invitation).deliver_now
+      InvitationMailer.invitation_email(@invitation,@invitation.token).deliver_now
       redirect_to accounts_path
     end
   end
@@ -17,14 +18,8 @@ class InvitationsController < ApplicationController
   # end
 
   def checkuser
-    id = params[:account_id]
-    email = params[:email]
-    user = User.find_by_email(params[:email])
-    if user
-      redirect_to new_user_session_path
-    else
-      redirect_to new_user_registration_path(email: email, account_id: id)
-    end
+    token = params[:token]
+    redirect_to new_user_registration_path(token: token)
   end
 
 private
