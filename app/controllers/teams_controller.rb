@@ -11,20 +11,15 @@ class TeamsController < ApplicationController
 
   def show
   # to add members in team
+  
     @team = Team.find(params[:id])
     @account = Account.find_by(id: @team.account_id)
     @invitation = Invitation.where(account_id: @account.id)
-    @member_details = TeamMember.check_member(params[:id])
-    @user_details = []
-    @invitation.each do |invite|
-      @user_details << User.team_id(invite.user_id)
-    end  
+    @user_details = Team.invitation(params[:id])
+
   #  added members in Team
-    @team_member = TeamMember.where(team_id: params[:id])
-    @checked_user = []
-    @team_member.each do |user|
-      @checked_user << User.team_id(user.user_id)
-    end
+
+    @checked_user = TeamMember.team_member(params[:id])
     @user_for_modal = @user_details - @checked_user
   end
 
