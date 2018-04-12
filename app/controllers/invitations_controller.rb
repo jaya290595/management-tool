@@ -13,10 +13,6 @@ class InvitationsController < ApplicationController
     end
   end
 
-  # def show
-  #   @invitation = Invitation.find(params[:id])
-  # end
-
   def checkuser
     token = params[:token]
     redirect_to new_user_registration_path(token: token)

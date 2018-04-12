@@ -1,9 +1,9 @@
 class Team < ApplicationRecord
   def self.invitation team
-    @team = Team.find(team)
-    @account = Account.find_by(id: @team.account_id)
-    @invitation = Invitation.where(account_id: @account.id)  
+    @team = Team.find(team)      
     @member_details = TeamMember.check_member(team)
+    @account = Account.find_by(id: @team.account_id)
+    @invitation = Invitation.where(account_id: @account.id)
     @user_details = []
     @invitation.each do |invite|
       @user_details << User.team_id(invite.user_id)

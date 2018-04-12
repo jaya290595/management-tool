@@ -8,6 +8,7 @@ class TeamMember < ApplicationRecord
     end
   end
 
+
   def self.team_member team_id
     @team_member = TeamMember.member(team_id)
     @checked_user = []
@@ -17,14 +18,17 @@ class TeamMember < ApplicationRecord
     @checked_user
   end
 
+
   def self.member team_id
     @team_member = TeamMember.where(team_id: team_id)
   end
+
 
   def self.team user
     @team_member = TeamMember.where(user_id: user)
 
   end
+
 
   def self.other_team member
     @team_member = TeamMember.team(user)

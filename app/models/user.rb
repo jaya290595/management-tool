@@ -1,5 +1,7 @@
 class User < ApplicationRecord
     attr_accessor :account_name, :token
+    validates_presence_of :name, :email
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
