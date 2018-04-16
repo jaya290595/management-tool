@@ -4,8 +4,8 @@ class Invitation < ApplicationRecord
     @account = Invitation.where(account_id: account)
     @user_detail = []
     @account.each do |user|
-      @user_detail << User.team_id(user.user_id)
+      @user_detail << User.total_invites(user.user_id)
     end
-    @user_detail
+    return @user_detail
   end
 end

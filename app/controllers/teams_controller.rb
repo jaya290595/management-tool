@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
   def show
   # to add members in team
     @team = Team.find(params[:id])
-    @account = Account.find_by(id: @team.account_id)
+    @account = Account.find(@team.account_id)
     @invitation = Invitation.where(account_id: @account.id)
     @user_details = Team.invitation(params[:id])
 

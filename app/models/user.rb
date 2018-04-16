@@ -9,9 +9,10 @@ class User < ApplicationRecord
   #has_many :invitations, dependent: :destroy
   #has_one :account
   #accepts_nested_attributes_for :account
-    after_create :account 
+   
+  after_create :account 
     
-  def self.team_id user_id
+  def self.total_invites user_id
     User.find_by_id(user_id)
   end
 
@@ -20,7 +21,7 @@ class User < ApplicationRecord
     if token1.present?
     Invitation.where(token: token1).update(user_id: self.id)
     else
-    @account = Account.create(user_id: self.id, account_name: account_name)
+    @account = Account.create(user_id: self.id, account_name: account_name) if account_name.present?
     end
   end
 
