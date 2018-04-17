@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :rooms
   root 'accounts#index'
   resources :accounts
   devise_for :users, controllers:{registrations:'users/registrations'}
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
   get "check_member", to: "teams#check_member"
   get "add_member", to:"teams#add_member"
 
- 
+  mount ActionCable.server => '/cable'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

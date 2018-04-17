@@ -46,19 +46,19 @@ RSpec.describe TeamMember, type: :model do
     end
   end
 
-  # describe ".other_team(member)" do
-  #   it "returns all teams with user id id given" do
-  #     owner = create :user
-  #     account =(create :account, user_id: owner.id)
-  #     team = (create :team, owner_id: owner.id)
-  #     member = create :user
-  #     invite = (create :invitation, account_id: account.id, user_id: member.id)
-  #     team_member = (create :team_member, team_id: team.id, user_id: member.id)
-  #     other_teams = []
-  #     other_teams << Team.find(team_member.team_id)
-  #     members = TeamMember.other_team(member.id)
-  #     expect(other_teams).to eq(members)
-  #   end
-  # end
+  describe ".other_team(member)" do
+    it "returns all teams with user id id given" do
+      owner = create :user
+      account =(create :account, user_id: owner.id)
+      team = (create :team, owner_id: owner.id)
+      member = create :user
+      invite = (create :invitation, account_id: account.id, user_id: member.id)
+      team_member = (create :team_member, team_id: team.id, user_id: member.id)
+      other_teams = []
+      other_teams << Team.find(team_member.team_id)
+      members = TeamMember.other_team(member.id)
+      expect(other_teams).to eq(members)
+    end
+  end
 
 end

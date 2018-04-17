@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-11">
+        <p class="card-text">
+          <span class="text-muted"><%= @user_name %> says</span><br>
+          <% @all_messages.each do |msg| %>
+            <%= msg%>
+        </p>
+        <%end%>
+      </div>
+    </div>
+  </div>
+</div>

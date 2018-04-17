@@ -6,7 +6,8 @@ class AccountsController < ApplicationController
   def show
     @user_detail = Invitation.get_invite(params[:id])
     @team = Team.where(account_id: params[:id], owner_id: current_user.id)
-    @other_team = TeamMember.team(current_user.id)    
+    @team_member = TeamMember.team(current_user.id)
+    @other_teams = TeamMember.other_team(current_user.id)   
   end
 
 private

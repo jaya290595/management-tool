@@ -27,5 +27,6 @@ class TeamMember < ApplicationRecord
     @team_member.each do |member|
       @other_teams << Team.find_by(id: member.team_id)
     end
+    return @other_teams
   end
 end
