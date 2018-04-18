@@ -21,22 +21,19 @@
   </table>
 
 
+
+
   <!-- form for chat room -->
 
-  <%= form_for :room, url: rooms_path do |form|%>
-    <div class="form-group">
-      <%= form.label :write_messages %>
-      <%= form.text_field :message, autofocus: true, class: 'form-control' %>
-      <%= form.hidden_field :team_id , :value => @team.id %>
-      <%= form.hidden_field :user_id , :value => current_user.id %>
-    </div>
+  <h1> Chat Room</h1>
+  <div id = "rooms"</div>
+    <%= render @rooms%>
+  </div>
 
-    <%= form.submit "Add", class: 'btn btn-primary' %>
-  <% end %>
-
-<%= render 'chat'%>
-
-
+<form>
+  <label> Say something:</label>
+  <input type="text" data-team = "<% @team.id%>" id = "data">
+</form>
 
 
   <!-- Modal for team members -->
