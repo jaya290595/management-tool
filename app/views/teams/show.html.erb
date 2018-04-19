@@ -26,13 +26,13 @@
   <!-- form for chat room -->
 
   <h1> Chat Room</h1>
-  <div id = "rooms"</div>
+  <div id = "rooms"> </div>
     <%= render @rooms%>
   </div>
 
 <form>
   <label> Say something:</label>
-  <input type="text" data-team = "<% @team.id%>" id = "data">
+  <input type="text" data-team = "<%=@team.id%>" id ="data">
 </form>
 
 

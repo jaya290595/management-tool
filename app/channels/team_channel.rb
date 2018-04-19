@@ -8,7 +8,6 @@ class TeamChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-  	debugger
-  	Room.create(message: data['message'], user_id: current_user.id, team_id: team[:id])
+  	Room.create(message: data['message'], user_id: current_user.id, team_id: data['team_id'])
   end
 end

@@ -8,13 +8,9 @@ class TeamsController < ApplicationController
   end  
 
   def show
-    # message content
-    # @all_messages = Room.find_messages(params[:id])
-    
-    # # user name
-    # @user_name = Room.user_name(params[:id])
-      @rooms = Room.all
-   
+    # for chat room with specific team_id
+      @rooms = Room.all.where(team_id: params[:id])
+
     # to add members in team
       @team = Team.find(params[:id])
       @account = Account.find(@team.account_id)
