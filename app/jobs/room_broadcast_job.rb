@@ -2,7 +2,8 @@ class RoomBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message)
-    ActionCable.server.broadcast 'team_channel', message: render_message(message)
+
+    ActionCable.server.broadcast "team_channel#{message.team_id}", message: render_message(message)
 end
 
 private
