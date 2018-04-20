@@ -1,37 +1,57 @@
-<div class="container">
-  <table class="table">
+<div class="container-narrow">    
+  <div class="masthead">    
     <div class="text-right">
       <%if invite_button(@accounts).present? %>
           <button type="button" class="btn btn-danger" class="col-md-6 text-right" data-toggle="modal" data-target="#myModal">Invite new users </button>
           <%end%>
       <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#Teams">Add Teams </button></div>
-    </div>
+  </div>
+</div>
 
-    <thead>
+<div class="text-center"><h3><u>Account Members</u></h3></div>
+<div class="container">
+  <div class="table-bordered table-responsive text-center">
+    <table class="table table-bordered">
+    <thead  class="thead-dark">
       <tr>
-        <th>Name</th>
-        <th>Email</th>
+        <th style="border-color:black;" scope="col"><h4>Name</h4></th>
+        <th style="border-color:black;" scope="col"><h4>Email</h4></th>
       </tr>
     </thead>
     <tbody>
       <%@user_detail.each do |a|%>
-        <tr>
-          <td><%= a.name%> </td>
-          <td><%= a.email%></td>
+        <tr  class="table-active">
+          <td style="border-color:black;"> <%= a.name%> </td>
+          <td style="border-color:black;"> <%= a.email%></td>
         </tr>
       <%end%>
     </tbody>
   </table>
 
-  <h3> My teams </h3> 
-    <% @team.each do |team|%>
-      <%= render 'team', team: team %>
-    <%end%>
-  <h3> Other teams</h3>
-    <% @other_teams.each do |team|%>
-      <%= render 'team', team: team %>
-    <%end%>
+<!-- My Teams -->
+  <% if @team.present? %>
+    <h3><u>My Teams</u></h3>
+        <div class="row">
+          <% @team.each do |team|%>
+            <div class="col-md-4">
+              <%= render 'team', team: team %>
+            </div>
+          <%end%>
+        </div>
+  <%end%>
 
+
+<!-- Other Teams -->
+  <% if @other_teams.present? %>
+    <h3><u>Other Teams</u></h3>
+    <div class="row">
+      <% @other_teams.each do |team|%>
+        <div class="col-md-4">
+          <%= render 'team', team: team %>
+        </div>
+      <%end%>
+    </div>
+  <%end%>
   
 <!-- Modal for invitations -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -61,12 +81,6 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
 
 <!-- Modal for Teams -->
 <div class="modal fade" id="Teams" role="dialog">

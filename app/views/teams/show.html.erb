@@ -3,32 +3,37 @@
       <div class="text-right">
          <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#members">Add Members </button></div>
       </div>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @checked_user.each do |user|%> 
-        <tr>
-          <td><%= user.name%></td>
-          <td><%=user.email%></td>
-        </tr>
-     
-      </tbody>
-      <%end%>
-  </table>
+
+  <div class="text-center"><h3><u>Team Members</u></h3></div>
+    <div class="container">
+      <div class="table-bordered table-responsive text-center">
+        <table class="table table-bordered">
+          <thead  class="thead-dark">
+            <tr>
+              <th style="border-color:black;" scope="col"><h4>Name</h4></th>
+              <th style="border-color:black;" scope="col"><h4>Email</h4></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @checked_user.each do |user|%> 
+              <tr  class="table-active">
+                <td style="border-color:black;"><%= user.name%></td>
+                <td style="border-color:black;"><%=user.email%></td>
+              </tr>
+            <%end%>
+          </tbody>
+      </table>
 
 
 
 
   <!-- form for chat room -->
-
+<div class="container">
   <h1> Chat Room</h1>
   <div id = "rooms"> </div>
     <%= render @rooms%>
   </div>
+</div>
 
 <form>
   <label> Say something:</label>
@@ -50,19 +55,19 @@
           <%= form_with scope: :team, url: check_path, local: true do |form|%>
             <table class="table">
               <thead>
-                <tr>
+                <tr><h3>Select Members</h3>
                   <th>Name</th>
                 </tr>
               </thead>
               <tbody>
                   <div class="checkbox">
                       <label class= "checkbox inline">
-
                         <%@user_for_modal.each do |a|%>
-                            <tr>
+                          <tr>
                             <td><%= a.name%></td>
                             <td><%= check_box_tag "ids[]",a.id %></td>
-                            <%end%>
+                        <%end%>
+                          </tr>
                             <%= form.hidden_field :team_id , :value => @team.id %>
                             <%= form.hidden_field :account_id , :value => @account.id %>
                       </label>

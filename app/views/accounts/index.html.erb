@@ -1,23 +1,28 @@
-<div class="container">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Account Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @account.each do |account| %>
-        <tr>
-          <td> <%=link_to account.account_name, account_path(account.id)%> </td>
-        </tr>
-      <%end%>
-    </tbody>
-  </table>
-  <%= link_to "logout",  destroy_user_session_path, method: :delete%>
+<div class="container-narrow">    
+  <div class="masthead">
+    <div class="text-center"> 
+      <div class="container">
+        <u><h1>Accounts</h1></u>
+        <div class="row">
+          <%@account.each do |account|%>
+            <div class="col-md-6">
+              <div class="card" style="width: 30rem;" style="border-color:black;">
+                <div class="row">
+                  <div class="card text-primary border-primary">
+                  <div class="card-body" class="card text-primary border-primary"><br>
+                    <h4 class="card-title"><%= account.account_name%></h4>
+                      <%= link_to 'View Account', account_path(account.id), class: "btn btn-danger"%>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div> 
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
-
-
 
 

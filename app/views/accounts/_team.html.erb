@@ -1,9 +1,13 @@
-<div class = "container">
-  <div class="row">
-    <div class="col">
-        <h2><%=team.team_name%></h2>
-          <p class="title"></p>
-          <%= link_to 'Show Teams',team_path(team),class: "btn btn-primary"%>
-    </div>
+<div class="card" style="width: 18rem;">
+  <div class="row" >
+    <div class="card-body"><br>
+    <div class="col"><h3><%=team.team_name%> team </h3></div>
+    <p class="title"></p>
+    <%= link_to 'Show Teams', team_path(team), class: "btn btn-primary"%>
   </div>
-</div> 
+  </div>
+  </div>
+
+
+
+  
