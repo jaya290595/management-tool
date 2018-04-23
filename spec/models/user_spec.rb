@@ -17,26 +17,3 @@ describe ".total_invites(user_id)" do
   	expect(find_user).to eq(find_other_user)
   end
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  	def self.total_invites user_id
-  	  User.find_by_id(user_id)
-  	end

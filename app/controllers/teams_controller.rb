@@ -15,7 +15,7 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
       @account = Account.find(@team.account_id)
       @invitation = Invitation.where(account_id: @account.id)
-      @user_details = Team.invitation(params[:id])
+      @user_details = @team.invitation
 
     # added members in Team
       @checked_user = TeamMember.team_member(params[:id])

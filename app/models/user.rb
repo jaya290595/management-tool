@@ -12,8 +12,8 @@ class User < ApplicationRecord
    
   after_create :account 
     
-  def self.total_invites user_id
-    User.find_by_id(user_id)
+  def self.get_invite account_id
+    User.find_by_id(account)
   end
 
   def account
