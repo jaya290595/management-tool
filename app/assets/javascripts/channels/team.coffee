@@ -14,13 +14,14 @@ jQuery(document).on 'turbolinks:load', ->
       received: (data) ->
         $('#rooms').append data['message']
 
-      speak: (message,team_id) ->
-        @perform 'speak', message: message,  team_id: team_id
+      speak: (message,team_id,account_id) ->
+        @perform 'speak', message: message,  team_id: team_id, account_id: account_id
 
     $(document).on 'keypress', (event) ->
       team_id = $("#data").attr('data-team')
+      account_id =$("#data").attr('data-account')
       message = $("#data").val()
       if event.keyCode is 13  
-        App.team.speak message , team_id
+        App.team.speak message , team_id, account_id
         event.target.value = ''
         event.preventDefault()

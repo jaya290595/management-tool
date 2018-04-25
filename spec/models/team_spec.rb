@@ -6,15 +6,15 @@ RSpec.describe Team, type: :model do
     it "return all invitations" do
         owner =  create :user
         account = (create :account , user_id: owner.id)
-        team = (create :team, account_id: owner.id)
+        team = (create :team, account_id: account.id)
         user = create :user
-        invited_account = (create :account, user_id: user.id) 
-        invite = (create :invitation, account_id: account.id, user_id: user.id)
-        invited_user = User.find(user.id)
-        members = []
-        members << invited_user
-        invitations = Team.invitation(team.id)
-        expect(invitations).to eq(members)  
+        other_account = (create :account, user_id: user.id)
+        invite_account = (create :invitation, user_id: user.id, account_id: account.id)
+        team_account = Account.find_by(id: team.account_id)
+        team_account_invitation = Invitation.where(account_id: team_account.id).pluck(:user_id)
+        invitation_users = User.where(id: team_account_invitation)
+        invitations = team.invitation
+        expect(invitations).to eq(invitation_users)  
 
     end
   end

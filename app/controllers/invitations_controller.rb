@@ -4,8 +4,10 @@ class InvitationsController < ApplicationController
   end
 
   def create
-    @invitation = Invitation.new(invitation_params)    
+    @invitation = Invitation.new(invitation_params)
     @invitation.account_id = Account.find_by(user_id: current_user.id).id
+    @account = Account.find_by_id(@invitation.account_id)
+    authorize @account 
     @invitation.token =  Digest::SHA1.hexdigest([Time.now, rand].join)
     if @invitation.save
       InvitationMailer.invitation_email(@invitation,@invitation.token).deliver_now

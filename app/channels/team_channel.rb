@@ -8,6 +8,6 @@ class TeamChannel < ApplicationCable::Channel
   end
 
   def speak(data)
-  	Room.create(message: data['message'], user_id: current_user.id, team_id: data['team_id'])
+  	Room.create(message: data['message'], user_id: current_user.id, team_id: data['team_id'], account_id: data['account_id'])
   end
 end

@@ -13,7 +13,7 @@ class User < ApplicationRecord
   after_create :account 
     
   def self.get_invite account_id
-    User.find_by_id(account)
+    User.find_by_id(account_id)
   end
 
   def account

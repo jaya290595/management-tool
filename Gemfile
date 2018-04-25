@@ -20,6 +20,8 @@ gem 'devise', '~> 4.2'
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'pundit', '~> 1.1'
+gem 'simplecov', require: false, group: :test
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

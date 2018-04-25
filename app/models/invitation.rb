@@ -9,4 +9,5 @@ class Invitation < ApplicationRecord
     # end
     # return @user_detail
   end
+
 end

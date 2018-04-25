@@ -2,7 +2,8 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(teams_params)
-    @team_account_id = Account.where(id: @team.account_id)
+    @account = Account.find_by_id(teams_params[:account_id])
+    authorize @account
     @team.save
     redirect_to account_path(@team.account_id)
   end  
@@ -13,6 +14,7 @@ class TeamsController < ApplicationController
 
     # to add members in team
       @team = Team.find(params[:id])
+      authorize @team
       @account = Account.find(@team.account_id)
       @invitation = Invitation.where(account_id: @account.id)
       @user_details = @team.invitation

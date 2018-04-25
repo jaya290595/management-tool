@@ -1,9 +1,7 @@
 <div class="container-narrow">    
   <div class="masthead">    
     <div class="text-right">
-      <%if invite_button(@accounts).present? %>
           <button type="button" class="btn btn-danger" class="col-md-6 text-right" data-toggle="modal" data-target="#myModal">Invite new users </button>
-          <%end%>
       <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#Teams">Add Teams </button></div>
   </div>
 </div>
@@ -42,8 +40,8 @@
 
 
 <!-- Other Teams -->
-<h3><u>Other Teams</u></h3>
   <% if @other_teams.present? %>
+  <h3><u>Other Teams</u></h3>
     <div class="row">
       <% @other_teams.each do |team|%>
         <div class="col-md-4">
