@@ -5,7 +5,7 @@ class AccountsController < ApplicationController
 
   def show
     @account = Account.find(params[:id])
-    authorize @account
+    authorize Account
     @user_detail = Invitation.get_invite(params[:id])
     @team = Team.where(account_id: params[:id], owner_id: current_user.id)
     @team_member = TeamMember.team(current_user.id)

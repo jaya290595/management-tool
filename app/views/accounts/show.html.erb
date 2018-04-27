@@ -50,7 +50,11 @@
       <%end%>
     </div>
   <%end%>
-  
+
+  <%= render partial: "comments/comments", locals:{commentable: @account} %>
+  <%= render partial: "comments/form", locals:{commentable: @account} %>
+
+
 <!-- Modal for invitations -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -62,7 +66,7 @@
               <h4 class="modal-title"></h4>
           </div>
           <div class="modal-body">
-            <%= form_with scope: :invitation, url: invitations_path, local: true do |form| %>
+            <%= form_with scope: :invitation, url: invitations_path(account_id: @account.id), local: true do |form| %>
               <p>
                 <%= form.label :Email %><br>
                 <%= form.email_field :email %>

@@ -41,6 +41,11 @@
 </form>
 
 
+<%= render partial: 'comments/comments', locals:{ commentable: @team} %>
+<%= render partial: 'comments/form', locals:{ commentable: @team} %>
+
+<% debugger%>
+
   <!-- Modal for team members -->
   <div class="modal fade" id="members" role="dialog">
     <div class="modal-dialog">

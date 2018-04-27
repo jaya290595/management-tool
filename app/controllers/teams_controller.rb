@@ -3,7 +3,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(teams_params)
     @account = Account.find_by_id(teams_params[:account_id])
-    authorize @account
+    authorize Account, :show?
     @team.save
     redirect_to account_path(@team.account_id)
   end  

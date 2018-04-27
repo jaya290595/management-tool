@@ -1,0 +1,7 @@
+<h2>Comments</h2>
+  <% commentable.comments.each do |comment| %>
+    <%user = User.find_by_id(comment.user_id)%>
+     <div class="well">
+       <%= comment.content%> by <%=user.name%>
+     </div>
+  <%end%>

@@ -5,6 +5,17 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  def pundit_user
+    if params[:account_id].present?
+      @current_account = Account.find_by_id(params[:account_id])
+    elsif params[:id].present?
+      @current_account = Account.find_by_id(params[:id])
+    elsif params[:team][:account_id].present?
+      @current_account = Account.find_by_id(params[:team][:account_id])
+  end
+     AccountContext.new(current_user, @current_account)
+  end
+
   private
   def user_not_authorized
     flash[:warning] = "You are not authorized to perform this action."
